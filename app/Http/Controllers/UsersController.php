@@ -41,13 +41,30 @@ class UsersController extends Controller
     }
 
     /**
-     * save users
+     * Register new users
      */
     public function store(Request $request)
-    {
-        return 'users.store.controller';
+    {   
+        $name  = $request->input('name');
+        $email = $request->input('email');
+        $pwd = $request->input('password');
+        $md5Pwd = md5($pwd);
+        $confirmPwd = $request->input('confirm_password');
+
+        $data = Users::create([
+                'name' => $name,
+                'email' => $email,
+                'password' => $md5Pwd
+            ]);
+
+        if(empty($data))
+        {
+            return response()->json(['error' => 'can not save data'], 401);
+        }
+
+        return response()->json($data);
+
     }
-    
 
     public function login(Request $request)
     {   

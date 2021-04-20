@@ -19,12 +19,12 @@ $router->get('/', function () use ($router) {
 
 // images
 $router->get('images', 'ImagesController@index');
-$router->post('images', 'ImagesController@index');
+$router->post('images', 'ImagesController@store');
 
 // users
 $router->get('users', 'UsersController@index');
 $router->get('users/name/{name}', 'UsersController@getUserByName');
 $router->get('users/email/{email}', 'UsersController@getUserByName');
-$router->post('users', 'UsersController@index');
+$router->post('users', 'UsersController@store');
 $router->post('users/login', 'UsersController@login');
 
